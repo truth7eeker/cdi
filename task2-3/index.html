@@ -1,0 +1,392 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>MDN</title>
+      <link rel="stylesheet" href="styles.css" />
+      <link rel="stylesheet" href="normalize.css" />
+   </head>
+   <body>
+      <div class="wrapper">
+         <header class="header">
+            <div class="container row">
+               <div class="header__logo">
+                  <a href=""><img class="header__img" src="./assets/logo.svg" alt="logo" /></a>
+               </div>
+
+               <div class="row row--spaced">
+                  <nav class="header__nav">
+                     <ul class="row nav-list">
+                        <li class="header__list-item">
+                           <a class="header__link link" href="">References</a>
+                        </li>
+                        <li class="header__list-item">
+                           <a class="header__link link" href="">Guides</a>
+                        </li>
+                        <li class="header__list-item">
+                           <a class="header__link link" href="">Plus</a>
+                        </li>
+                        <li class="header__list-item">
+                           <a class="header__link link" href="">Blog</a>
+                        </li>
+                        <li class="header__list-item">
+                           <a class="header__link link" href="">Play</a>
+                        </li>
+                        <li class="header__list-item">
+                           <a class="header__link link" href="">AI Help</a>
+                        </li>
+                     </ul>
+                  </nav>
+                  <div class="row header__additionals">
+                     <button type="button" class="switch-button button">
+                        <img src="./assets/sun.svg" />
+                        <span>Theme</span>
+                     </button>
+
+                     <div class="header__search">
+                        <input type="search" class="search-input" />
+                        <img class="search__img" src="assets/search.svg" alt="search icon" />
+                     </div>
+
+                     <button type="button" class="button login-button">Log in</button>
+                     <button type="button" class="button signup-button">Sign up for free</button>
+                  </div>
+                  <div class="header__burger">
+                     <button type="button" class="button">
+                        <img src="./assets/burger.svg" />
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </header>
+
+         <div class="container row row--spaced sub-header">
+            <nav classs="sub-header__nav">
+               <ul class="row nav-list">
+                  <li class="sub-header__notes">
+                     <a class="link">
+                        <img src="./assets/notes.svg" />
+                     </a>
+                  </li>
+                  <li class="sub-header__list-item">
+                     <a class="link--underline link" href="">References</a>
+                  </li>
+                  <li class="">
+                     <a class="link--underline link" href="">HTML</a>
+                  </li>
+               </ul>
+            </nav>
+            <div class="sub-header__lang">
+               <button class="switch-button button">English (US)</button>
+            </div>
+         </div>
+
+         <div class="grid-container">
+            <aside class="left-sidebar">
+               <div class="container">
+                  <div class="left-sidebar__search">
+                     <input type="search" class="search-input" placeholder="Filter" />
+                     <img
+                        class="left-sidebar__filter-img"
+                        src="assets/filter.svg"
+                        alt="filter icon"
+                     />
+                  </div>
+                  <nav class="left-sidebar__nav">
+                     <ol class="left-sidebar__links">
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline link--main" href="">HTML</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline link--main" href="">Tutorials</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">HTML basics</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <img src="./assets/forward.svg" alt="forward icon" />
+                           <a class="link" href="">Introduction to HTML</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <img src="./assets/forward.svg" alt="forward icon" />
+                           <a class="link" href="">Multimedia and embedding</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <a class="link" href=""
+                              ><img src="./assets/forward.svg" alt="forward icon" /> HTML tables</a
+                           >
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline link--main" href="">References</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <img src="./assets/forward.svg" alt="forward icon" />
+                           <a class="link" href="">HTML elements</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <img src="./assets/forward.svg" alt="forward icon" />
+                           <a class="link" href="">Global attributes</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <img src="./assets/forward.svg" alt="forward icon" />
+                           <a class="link" href="">Attributes</a>
+                        </li>
+                        <li class="left-sidebar__list-item row">
+                           <img src="./assets/forward.svg" alt="forward icon" />
+                           <a class="link" href=""><code>&lt;input&gt; </code> types</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--main" href="">Guides</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Content categories</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Block-level elements</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Inline elements</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href=""
+                              >Quirks Mode and Standards Mode</a
+                           >
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href=""
+                              >Date and time formats used in HTML</a
+                           >
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Constraint validation</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Microdata</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Microformats</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href="">Viewport meta tag</a>
+                        </li>
+                        <li class="left-sidebar__list-item">
+                           <a class="link link--underline" href=""
+                              >Allowing cross-origin use of images and canvas</a
+                           >
+                        </li>
+                     </ol>
+                  </nav>
+               </div>
+            </aside>
+
+            <main class="main">
+               <article class="article">
+                  <section class="atricle__section">
+                     <h1>HTML: HyperText Markup Language</h1>
+                     <div class="section__content">
+                        <p>
+                           HTML (HyperText Markup Language) is the most basic building block of the
+                           Web. It defines the meaning and structure of web content. Other
+                           technologies besides HTML are generally used to describe a web page's
+                           appearance/presentation (CSS) or functionality/behavior (JavaScript).
+                        </p>
+                        <p>
+                           "Hypertext" refers to links that connect web pages to one another, either
+                           within a single website or between websites. Links are a fundamental
+                           aspect of the Web. By uploading content to the Internet and linking it to
+                           pages created by other people, you become an active participant in the
+                           World Wide Web.
+                        </p>
+                        <p>
+                           HTML uses "markup" to annotate text, images, and other content for
+                           display in a Web browser. HTML markup includes special "elements" such as
+                           <code>&lt;head&gt;</code>, <code>&lt;title&gt;</code>,
+                           <code>&lt;body&gt;</code>, <code>&lt;header&gt;</code>,
+                           <code>&lt;footer&gt;</code>, <code>&lt;article&gt;</code>,
+                           <code>&lt;section&gt;</code>, <code>&lt;p&gt;</code>,
+                           <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>,
+                           <code>&lt;img&gt;</code>, <code>&lt;aside&gt;</code>,
+                           <code>&lt;audio&gt;</code>, <code>&lt;canvas&gt;</code>,
+                           <code>&lt;datalist&lt;</code>, <code>&lt;details&gt;</code>,
+                           <code>&lt;embed&gt;</code>, <code>&lt;nav&gt;</code>,
+                           <code>&lt;search&gt;</code>, <code>&lt;output&gt;</code>,
+                           <code>&lt;progress&gt;</code>, <code>&lt;video&gt;</code>,
+                           <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>,
+                           <code>&lt;li&gt;</code> and many others.
+                        </p>
+                        <p>
+                           An HTML element is set off from other text in a document by "tags", which
+                           consist of the element name surrounded by "<" and ">". The name of an
+                           element inside a tag is case-insensitive. That is, it can be written in
+                           uppercase, lowercase, or a mixture. For example, the
+                           <code>&lt;title&gt;</code> tag can be written as
+                           <code>&lt;Title&gt;</code>, <code>&lt;TITLE&gt;</code>, or in any other
+                           way. However, the convention and recommended practice is to write tags in
+                           lowercase.
+                        </p>
+                        <p>The articles below can help you learn more about HTML.</p>
+                     </div>
+                  </section>
+                  <section class="atricle__section">
+                     <h2>Key resources</h2>
+                     <div class="article__content">
+                        <div>
+                           <div class="article__subtitle">
+                              <a class="link link--underline" href="">HTML Introduction</a>
+                           </div>
+                           <p class="article__para">
+                              If you're new to web development, be sure to read our HTML Basics
+                              article to learn what HTML is and how to use it.
+                           </p>
+                        </div>
+                        <div>
+                           <div class="article__subtitle">
+                              <a class="link link--underline" href="">HTML Tutorials</a>
+                           </div>
+                           <p class="article__para">
+                              For articles about how to use HTML, as well as tutorials and complete
+                              examples, check out our HTML Learning Area.
+                           </p>
+                        </div>
+                        <div>
+                           <div class="article__subtitle">
+                              <a class="link link--underline" href="">HTML Reference</a>
+                           </div>
+                           <p class="article__para">
+                              In our extensive HTML reference section, you'll find the details about
+                              every element and attribute in HTML.
+                           </p>
+                        </div>
+                        <div class="ad">
+                           <h4>Looking to become a front-end web developer?</h4>
+                           <p>
+                              We have put together a course that includes all the essential
+                              information you need to work towards your goal.
+                           </p>
+                           <p><a class="link ad__link" href="">Get started</a></p>
+                        </div>
+                     </div>
+                  </section>
+                  <section class="atricle__section">
+                     <h2>Beginner's tutorials</h2>
+                     <p>
+                        Our HTML Learning Area features multiple modules that teach HTML from the
+                        ground up — no previous knowledge required.
+                     </p>
+                     <div>
+                        <div class="article__subtitle">
+                           <a class="link link--underline" href="">Introduction to HTML</a>
+                        </div>
+                        <p class="article__para">
+                           This module sets the stage, getting you used to important concepts and
+                           syntax such as looking at applying HTML to text, how to create
+                           hyperlinks, and how to use HTML to structure a web page.
+                        </p>
+                     </div>
+                     <div>
+                        <div class="article__subtitle">
+                           <a class="link link--underline" href="">Multimedia and embedding</a>
+                        </div>
+                        <p class="article__para">
+                           This module explores how to use HTML to include multimedia in your web
+                           pages, including the different ways that images can be included, and how
+                           to embed video, audio, and even entire other webpages.
+                        </p>
+                     </div>
+                     <div>
+                        <div class="article__subtitle">
+                           <a class="link link--underline" href="">HTML tables</a>
+                        </div>
+                        <p class="article__para">
+                           Representing tabular data on a webpage in an understandable, accessible
+                           way can be a challenge. This module covers basic table markup, along with
+                           more complex features such as implementing captions and summaries.
+                        </p>
+                     </div>
+                     <div>
+                        <div class="article__subtitle">
+                           <a class="link link--underline" href="">HTML forms</a>
+                        </div>
+                        <p class="article__para">
+                           Forms are a very important part of the Web — these provide much of the
+                           functionality you need for interacting with websites, e.g. registering
+                           and logging in, sending feedback, buying products, and more. This module
+                           gets you started with creating the client-side/front-end parts of forms.
+                        </p>
+                     </div>
+                     <div>
+                        <div class="article__subtitle">
+                           <a class="link link--underline" href=""
+                              >Use HTML to solve common problems</a
+                           >
+                        </div>
+                        <p class="article__para">
+                           Provides links to sections of content explaining how to use HTML to solve
+                           very common problems when creating a web page: dealing with titles,
+                           adding images or videos, emphasizing content, creating a basic form, etc.
+                        </p>
+                     </div>
+                  </section>
+               </article>
+            </main>
+            <aside class="right-sidebar">
+               <h2 class="right-sidebar__title">In this article</h2>
+               <ul class="nav-list right-sidebar__nav">
+                  <li><a class="link" href="">Key resources</a></li>
+                  <li><a class="link" href="">Beginner's tutorials</a></li>
+                  <li><a class="link" href="">Advanced topics</a></li>
+                  <li><a class="link" href="">Reference</a></li>
+                  <li><a class="link" href="">Related topics</a></li>
+               </ul>
+            </aside>
+         </div>
+
+         <footer class="footer">
+            <div class="container footer__grid">
+               <div class="footer__logo">
+                  <a href="" class="link logo--bold">mdn</a>
+                  <p>Your blueprint for a better internet.</p>
+                  <div class="footer__socials">
+                     <a class="link" href=""><img src="./assets/twitter.svg" /></a>
+                     <a class="link" href=""><img src="./assets/github.svg" /></a>
+                     <a class="link" href=""><img src="./assets/feed.svg" /></a>
+                  </div>
+               </div>
+               <div class="footer__mdn">
+                  <h2 class="footer__title">MDN</h2>
+                  <ul class="nav-list footer__nav">
+                     <li><a class="link" href="">About</a></li>
+                     <li><a class="link" href="">Blog</a></li>
+                     <li><a class="link" href="">Careers</a></li>
+                     <li><a class="link" href="">Advertise with us</a></li>
+                  </ul>
+               </div>
+               <div class="footer__support">
+                  <h2 class="footer__title">Support</h2>
+                  <ul class="nav-list">
+                     <li><a class="link" href="">Product help</a></li>
+                     <li><a class="link" href="">Report an issue</a></li>
+                  </ul>
+               </div>
+               <div class="footer__community">
+                  <h2 class="footer__title">Our communities</h2>
+                  <ul class="nav-list footer__nav">
+                     <li><a class="link" href="">MDN Community</a></li>
+                     <li><a class="link" href="">MDN Forum</a></li>
+                     <li><a class="link" href="">MDN Chat</a></li>
+                  </ul>
+               </div>
+               <div class="footer__devs">
+                  <h2 class="footer__title">Developers</h2>
+                  <ul class="nav-list footer__nav">
+                     <li><a class="link" href="">Web Technologies</a></li>
+                     <li><a class="link" href="">Learn Web Development</a></li>
+                     <li><a class="link" href="">MDN Plus</a></li>
+                     <li><a class="link" href="">Hacks Blog</a></li>
+                  </ul>
+               </div>
+            </div>
+         </footer>
+      </div>
+   </body>
+</html>
