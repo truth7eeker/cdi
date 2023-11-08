@@ -78,7 +78,7 @@
 
 .field__checkbox {
     position: relative;
-    cursor: pointer;  
+    cursor: pointer;
     display: flex;
 }
 
@@ -126,8 +126,15 @@
     box-shadow: inset 1em 1em var(--bg-purple);
 }
 
-.checkbox__input:checked + .checkbox__shape::before {
+.checkbox__input:checked+.checkbox__shape::before {
     transform: scale(1);
+}
+
+.checkbox__input:focus+.checkbox__shape {
+    -webkit-box-shadow: .01em .01em .05em .05em var(--bg-purple);
+    -moz-box-shadow: .01em .01em .05em .05em var(--bg-purple);
+    box-shadow: .01em .01em .05em .05em var(--bg-purple);
+    border-color: #c1b0dc;
 }
 
 .row {
