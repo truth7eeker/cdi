@@ -18,19 +18,17 @@ const form = [
       max: 100,
       regex: /^(?=.{1,100}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]{3}.[A-Za-z]{2}$/,
       pattern: 'Must match the pattern: xxx@xxx.xx',
-      errMessage: '',
    },
-   { name: 'name', max: 150, errMessage: '' },
+   { name: 'name', max: 150 },
    {
       name: 'password',
       min: 8,
       max: 30,
       regex: /^(?=.*\W).{8,30}$/,
       pattern: 'Must contain at least 1 non-word character',
-      errMessage: '',
    },
-   { name: 'confirmPassword', errMessage: '' },
-   { name: 'confirmSignup', errMessage: '' },
+   { name: 'confirmPassword' },
+   { name: 'confirmSignup' },
 ];
 
 // make labels appear/dissapear based on focus and focusout events
