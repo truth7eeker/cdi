@@ -67,11 +67,6 @@ const handleErrClass = (index) => {
    }
 };
 
-const resetErrMessage = (index) => {
-   errors[index].textContent = '';
-   inputs[index].classList.remove('input--error');
-};
-
 // update error messages based on inputs' values
 const handleErrMessage = (entry, index) => {
    const [key, value] = entry;
@@ -111,8 +106,6 @@ const handleChange = (event) => {
 const handleInput = (event) => {
    const { name, value } = event.target;
    const index = findIndex(inputs, name);
-
-   // resetErrMessage(index);
    handleDynamicValidation([name, value], index);
 };
 
