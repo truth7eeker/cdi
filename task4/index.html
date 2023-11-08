@@ -1,0 +1,77 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Sign Up Form</title>
+      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+   </head>
+   <body>
+      <main>
+         <div class="container">
+            <h2>Sign Up</h2>
+            <form action="#" class="form">
+
+               <div class="form__field field">
+                  <label class="field__label" for="email">Email*</label>
+                  <input class="field__input" id="email" name="email" placeholder="Email*" />
+                  <span class="field__error hidden"></span>
+               </div>
+
+               <div class="form__field field">
+                  <label class="field__label" for="name">Name*</label>
+                  <input class="field__input" id="name" name="name" placeholder="Name*" />
+                  <span class="field__error hidden"></span>
+               </div>
+
+               <div class="form__field field">
+                  <label class="field__label" for="password">Password*</label>
+                  <input
+                     class="field__input"
+                     id="password"
+                     name="password"
+                     type="password"
+                     placeholder="Password*"
+                  />
+                  <i class="fas fa-lock field__icon"></i>
+                  <span class="field__error hidden"></span>
+               </div>
+
+               <div class="form__field field">
+                  <label class="field__label" for="confirm-password">Confirm Password*</label>
+                  <input
+                     class="field__input"
+                     id="confirm-password"
+                     name="confirmPassword"
+                     type="password"
+                     placeholder="Confirm Password*"
+                  />
+                  <i class="fas fa-lock field__icon"></i>
+                  <span class="field__error hidden"></span>
+               </div>
+
+               <div class="form__field field">
+                  <div class="field__checkbox checkbox">
+                     <label class="checkbox__label" for="signup-checkbox">
+                        <input
+                           class="checkbox__input visually-hidden"
+                           id="signup-checkbox"
+                           name="confirmSignup"
+                           type="checkbox"
+                        />
+                        Yes, I want to sign up
+                        <span class="checkbox__shape"></span>
+                     </label>
+                  </div>
+                  <span class="field__error hidden"></span>
+               </div>
+               
+               <button class="button form__submit-btn" type="submit">Sign Up</button>
+            </form>
+         </div>
+      </main>
+      <script src="script.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="sweetalert2.all.min.js"></script>
+   </body>
+</html>
