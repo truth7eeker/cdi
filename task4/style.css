@@ -25,7 +25,7 @@
     align-items: center;
 }
 
-.form {
+.form--spaced {
     gap: .7rem;
 }
 
