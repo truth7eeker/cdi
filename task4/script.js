@@ -2,7 +2,6 @@ const inputs = document.querySelectorAll('input');
 const submitBtn = document.querySelector('.form__submit-btn');
 const fromContainer = document.querySelector('.container');
 const passwordLock = document.querySelectorAll('.field__icon');
-const errors = document.querySelectorAll('.field__error');
 
 const user = {
    email: '',
@@ -16,19 +15,23 @@ const form = [
    {
       name: 'email',
       max: 100,
-      regex: /^(?=.{1,100}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]{3}.[A-Za-z]{2}$/,
+      regex: /^(?=.{1,100}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]{2,}.[A-Za-z]{2,}$/,
       pattern: 'Must match the pattern: xxx@xxx.xx',
+      required: true,
+      errMessage: '',
    },
-   { name: 'name', max: 150 },
+   { name: 'name', max: 150, required: true, errMessage: '' },
    {
       name: 'password',
       min: 8,
       max: 30,
-      regex: /^(?=.*\W).{8,30}$/,
-      pattern: 'Must contain at least 1 non-word character',
+      regex: /^(?=.*\W).+$/,
+      pattern: 'Must contant at least 1 non-word character',
+      required: true,
+      errMessage: '',
    },
-   { name: 'confirmPassword' },
-   { name: 'confirmSignup' },
+   { name: 'confirmPassword', required: true, errMessage: '' },
+   { name: 'confirmSignup', required: true, errMessage: '' },
 ];
 
 // make labels appear/dissapear based on focus and focusout events
@@ -52,16 +55,74 @@ const handleFocus = (event) => {
 // add error text to UI and toggle red error class
 const handleErrClass = (index) => {
    const formField = form[index];
-   const errText = errors[index].textContent;
+   const errText = formField.errMessage;
 
-   if (errText && formField.name === 'confirmSignup') {
-      errors[index].classList.remove('hidden');
-   } else if (errText && formField.name !== 'confirmSignup') {
+   if (errText && formField.name !== 'confirmSignup') {
       inputs[index].classList.add('input--error');
-      errors[index].classList.remove('hidden');
    } else {
       inputs[index].classList.remove('input--error');
-      errors[index].classList.add('hidden');
+   }
+};
+
+const checkRegex = (options) => {
+   const { formField, value, index } = options;
+   const { regex, pattern } = formField;
+   const lengthOk = checkLength(options);
+
+   if (lengthOk && !regex.test(value)) {
+      form[index].errMessage = pattern;
+   }
+};
+
+const checkLength = (options) => {
+   const { formField, value, index } = options;
+   const { min, max, required } = formField;
+   let err = '';
+
+   if (required && !value.length) {
+      err = "Can't be blank";
+   } else if (min && value.length < min) {
+      err = `Must be greater than ${min}`;
+   } else if (max && value.length > max) {
+      err = `Must be less than ${max}`;
+   }
+
+   form[index].errMessage = err;
+
+   return err ? false : true;
+};
+
+const checkConfirm = (options) => {
+   const { key, value, index } = options;
+   let err = '';
+  
+   if (key === 'confirmSignup' && !user.confirmSignup) {
+      err = 'You must agree to sign up';
+   } else if (key === 'confirmPassword' && value !== user.password) {
+      err = 'Passwords must match';
+   } else if (key === 'confirmPassword' && !value.length) {
+      err = "Can't be blank";
+   } 
+
+   form[index].errMessage = err;
+};
+
+const creatErrorMessage = (index) => {
+   const formField = inputs[index];
+   const err = form[index].errMessage;
+   const existingError = formField.closest('.form__field').querySelector('.field__error');
+
+   if (existingError && err) {
+      existingError.textContent = err;
+   } else if (!existingError && err) {
+      const error = document.createElement('span');
+
+      error.classList.add('field__error');
+      error.textContent = err;
+
+      formField.closest('.form__field').appendChild(error);
+   } else if (existingError && !err) {
+      formField.closest('.form__field').removeChild(existingError);
    }
 };
 
@@ -69,23 +130,28 @@ const handleErrClass = (index) => {
 const handleErrMessage = (entry, index) => {
    const [key, value] = entry;
    const formField = form[index];
+   const options = {
+      formField,
+      value,
+      index,
+      key,
+   };
 
-   if (key === 'confirmSignup' && !user.confirmSignup) {
-      errors[index].textContent = 'You should agree to sign up';
-   } else if (!value && typeof value === 'string') {
-      errors[index].textContent = "Can't be blank";
-   } else if (value.length < formField.min) {
-      errors[index].textContent = `Must be greater than ${formField.min}`;
-   } else if (value.length > formField.max) {
-      errors[index].textContent = `Must be less than ${formField.max}`;
-   } else if (key === 'confirmPassword' && value !== user.password) {
-      errors[index].textContent = 'Passwords must match';
-   } else if (formField.regex && !formField.regex.test(value)) {
-      errors[index].textContent = formField.pattern;
-   } else {
-      errors[index].textContent = '';
+   switch (formField.name) {
+      case 'email':
+      case 'password':
+         checkLength(options);
+         checkRegex(options);
+         break;
+      case 'name':
+         checkLength(options);
+         break;
+      case 'confirmPassword':
+      case 'confirmSignup':
+         checkConfirm(options);
    }
 
+   creatErrorMessage(index);
    handleErrClass(index);
 };
 
@@ -100,24 +166,20 @@ const handleChange = (event) => {
    user[name] = type === 'checkbox' ? checked : value.trim();
 };
 
-// delete error message as a user types in and enable dynamic validation
+// enable dynamic validation on every input event
 const handleInput = (event) => {
    const { name, value } = event.target;
    const index = findIndex(inputs, name);
-   handleDynamicValidation([name, value], index);
+
+   setTimeout(() => {
+      handleErrMessage([name, value], index);
+   }, 0);
 };
 
 // return true if there are no err messages
 const checkForm = () => {
    Object.entries(user).forEach((entry, index) => handleErrMessage(entry, index));
-   return Array.from(errors).every((error) => !error.textContent.length);
-};
-
-// waits for a second before validation fires off
-const handleDynamicValidation = (entry, index) => {
-   setTimeout(() => {
-      handleErrMessage(entry, index);
-   }, 0);
+   return !form.some((field) => field.errMessage.length);
 };
 
 const togglePassword = (event) => {
