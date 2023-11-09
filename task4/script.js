@@ -149,6 +149,7 @@ const handleErrMessage = (entry, index) => {
       case 'confirmPassword':
       case 'confirmSignup':
          checkConfirm(options);
+         break;
    }
 
    creatErrorMessage(index);
