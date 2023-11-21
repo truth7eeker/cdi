@@ -1,0 +1,66 @@
+{
+   "questions": [
+      {
+         "id": 1,
+         "title": "Why do programmers prefer dark mode?",
+         "answers": [
+            { "id": 1, "title": "Because it's easier on the eyes", "isCorrect": false },
+            { "id": 2, "title": "Because light attracts bugs", "isCorrect": true },
+            {
+               "id": 3,
+               "title": "Because they don't like to see their mistakes",
+               "isCorrect": false
+            },
+            { "id": 4, "title": "Because it makes them look mysterious", "isCorrect": false }
+         ]
+      },
+      {
+         "id": 2,
+         "title": "Why was the JavaScript developer sad?",
+         "answers": [
+            { "id": 1, "title": "Because he couldn't find his semicolon", "isCorrect": false },
+            { "id": 2, "title": "Because he got stuck in an infinite loop", "isCorrect": false },
+            { "id": 3, "title": "Because his code kept returning undefined", "isCorrect": false },
+            { "id": 4, "title": "Because he didn't Node how to Express himself", "isCorrect": true }
+         ]
+      },
+      {
+         "id": 3,
+         "title": "Why do programmers hate nature?",
+         "answers": [
+            { "id": 1, "title": "Because it has too many bugs", "isCorrect": true },
+            { "id": 2, "title": "Because they can't debug the trees", "isCorrect": false },
+            { "id": 3, "title": "Because it doesn't have Wi-Fi", "isCorrect": false },
+            { "id": 4, "title": "Because it's not user-friendly", "isCorrect": false }
+         ]
+      },
+      {
+         "id": 4,
+         "title": "Why did the programmer go broke?",
+         "answers": [
+            { "id": 1, "title": "Because he spent all his money on RAM", "isCorrect": false },
+            { "id": 2, "title": "Because he spent too much time in the cloud", "isCorrect": false },
+            { "id": 3, "title": "Because he used up all his cache", "isCorrect": true },
+            { "id": 4, "title": "Because he couldn't find any bits to eat", "isCorrect": false }
+         ]
+      },
+      {
+         "id": 5,
+         "title": "Why do programmers always mix up Halloween and Christmas?",
+         "answers": [
+            { "id": 1, "title": "Because 31 OCT equals 25 DEC", "isCorrect": true },
+            {
+               "id": 2,
+               "title": "Because they both involve lots of sugar and caffeine",
+               "isCorrect": false
+            },
+            {
+               "id": 3,
+               "title": "Because they can't differentiate between their arrays",
+               "isCorrect": false
+            },
+            { "id": 4, "title": "Because they get lost in the maze of dates.", "isCorrect": false }
+         ]
+      }
+   ]
+}
