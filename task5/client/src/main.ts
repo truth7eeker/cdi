@@ -1,9 +1,10 @@
 import { checkAnswer, getData } from './api/api';
-import { IAnswer, IQuestion } from './api/schema';
+import { type IAnswer, type IQuestion } from './api/schema';
+import 'style.scss';
 
-const wrapper = document.querySelector('.quiz') as HTMLDivElement;
+const wrapper = document.querySelector('.quiz');
 
-const BASE_URL = import.meta.env.VITE_QUIZ_URL;
+const BASE_URL = process.env.QUIZ_URL;
 
 let questions: IQuestion[] = [];
 let currIndex: number = 0;
@@ -19,163 +20,164 @@ const quizTemplate = `<div class="quiz__content">
           </div>`;
 
 const resetQuiz = () => {
-   questions = [];
-   isChecked = false;
-   currIndex = 0;
-   points = 0;
+    questions = [];
+    isChecked = false;
+    currIndex = 0;
+    points = 0;
 };
 
 // fetch data and render basic quiz structure
 const startQuiz = async () => {
-   resetQuiz();
+    resetQuiz();
 
-   questions = await getData(`${BASE_URL}/questions`);
+    questions = await getData(`${BASE_URL}/questions`);
 
-   if (questions && questions.length > 0) {
-      wrapper.innerHTML = quizTemplate;
-      createQuestion();
-   }
+    if (questions && questions.length > 0) {
+        wrapper.innerHTML = quizTemplate;
+        createQuestion();
+    }
 };
 
 const next = () => {
-   if (currIndex === questions.length - 1) {
-      return;
-   }
+    if (currIndex === questions.length - 1) {
+        return;
+    }
 
-   if (!isChecked) {
-      alert('Select one option');
-      return;
-   }
-
-   currIndex = currIndex + 1;
-   createQuestion();
-   //  answer can be selected
-   isChecked = false;
+    if (!isChecked) {
+        alert('Select one option');
+        return;
+    } else {
+        currIndex = currIndex + 1;
+        createQuestion();
+        //  answer can be selected
+        isChecked = false;
+    }
 };
 
 const createEl = (id: number, title: string) => {
-   const list = document.querySelector('.quiz__options') as HTMLElement;
-   const options = document.querySelectorAll('.quiz__option');
+    const list = document.querySelector('.quiz__options');
+    const options = document.querySelectorAll('.quiz__option');
 
-   if (options.length === 4) {
-      return;
-   } else {
-      const li = document.createElement('li');
-      li.textContent = title;
-      li.classList.add('quiz__option');
-      li.setAttribute('data-answer-id', id.toString());
-      li.addEventListener('click', () => select(id));
-      list.append(li);
-   }
+    if (options.length === 4) {
+        return;
+    } else {
+        const li = document.createElement('li');
+        li.textContent = title;
+        li.classList.add('quiz__option');
+        li.setAttribute('data-answer-id', id.toString());
+        li.addEventListener('click', async () => { await select(id); });
+        list.append(li);
+    }
 };
 
 const updateEl = (className: string, text: string) => {
-   const el = document.querySelector(className) as HTMLElement;
-   el.textContent = text;
+    const el = document.querySelector(className);
+    el.textContent = text;
 };
 
 const handleClass = (
-   selectedID: number,
-   correctID: number,
-   currID: number,
-   option: HTMLUListElement,
+    selectedID: number,
+    correctID: number,
+    currID: number,
+    option: HTMLUListElement
 ) => {
-   const isUserCorrect = correctID === Number(selectedID);
-   const isTargetCorrect = currID === correctID;
-   const isTargetIncorrect = currID === Number(selectedID);
+    const isUserCorrect = correctID === Number(selectedID);
+    const isTargetCorrect = currID === correctID;
+    const isTargetIncorrect = currID === Number(selectedID);
 
-   // after the correct answer is revealed, no more selections
-   if (isChecked) {
-      return;
-   }
+    // after the correct answer is revealed, no more selections
+    if (isChecked) {
+        return;
+    }
 
-   if ((isUserCorrect && isTargetCorrect) || isTargetCorrect) {
-      option.classList.add('correct');
-   } else if ((!isUserCorrect && isTargetIncorrect) || isTargetIncorrect) {
-      option.classList.add('incorrect');
-   }
+    if ((isUserCorrect && isTargetCorrect) || isTargetCorrect) {
+        option.classList.add('correct');
+    } else if ((!isUserCorrect && isTargetIncorrect) || isTargetIncorrect) {
+        option.classList.add('incorrect');
+    }
 };
 
 const handleBtn = (text: string, func: () => void) => {
-   const btn = document.querySelector('.quiz__btn') as HTMLButtonElement;
+    const btn = document.querySelector('.quiz__btn');
 
-   btn.textContent = text;
-   btn.addEventListener('click', func);
+    btn.textContent = text;
+    btn.addEventListener('click', func);
 };
 
 const provideFeedback = () => {
-   const base = `You got ${points} of ${questions.length} points.`;
-   let feedback = '';
+    const base = `You got ${points} of ${questions.length} points.`;
+    let feedback = '';
 
-   if (points === questions.length) {
-      feedback = `Awesome! ${base}`;
-   } else if (points === questions.length - 1) {
-      feedback = `Almost there! ${base}`;
-   } else {
-      feedback = `${base} Was tricky, huh? Try again!`;
-   }
-   return feedback;
+    if (points === questions.length) {
+        feedback = `Awesome! ${base}`;
+    } else if (points === questions.length - 1) {
+        feedback = `Almost there! ${base}`;
+    } else {
+        feedback = `${base} Was tricky, huh? Try again!`;
+    }
+    return feedback;
 };
 
 const showResults = async () => {
-   wrapper.innerHTML = `<div class="quiz__content quiz__results">
+    wrapper.innerHTML = `<div class="quiz__content quiz__results">
    <h3>${provideFeedback()}</h3>
    <button type="button" class="quiz__btn"></button>
    </iv>`;
 
-   handleBtn('Play again', startQuiz);
+    handleBtn('Play again', startQuiz);
 };
 
 const select = async (selectedID: number) => {
-   const { correctID, result } = await checkAnswer(
-      `${BASE_URL}/answer`,
-      questions[currIndex],
-      selectedID,
-   );
-   const options = document.querySelectorAll('.quiz__option') as NodeListOf<HTMLUListElement>;
+    const { correctID, result } = await checkAnswer(
+        `${BASE_URL}/answer`,
+        questions[currIndex],
+        selectedID
+    );
+    const options = document.querySelectorAll('.quiz__option');
 
-   if (isChecked) {
-      return;
-   }
+    if (isChecked) {
+        return;
+    }
 
-   options.forEach((option) => {
-      handleClass(selectedID, correctID, Number(option.getAttribute('data-answer-id')), option);
-   });
+    options.forEach((option: HTMLUListElement) => {
+        handleClass(selectedID, correctID, Number(option.getAttribute('data-answer-id')), option);
+    });
 
-   if (currIndex > questions.length - 2) {
-      handleBtn('Show results', showResults);
-   }
+    if (currIndex > questions.length - 2) {
+        handleBtn('Show results', showResults);
+    }
 
-   //  revealed the correct answer, no more attempts
-   isChecked = true;
-   points = result;
+    //  revealed the correct answer, no more attempts
+    isChecked = true;
+    points = result;
 };
 
 const createQuestion = () => {
-   const options = document.querySelectorAll('.quiz__option');
-   const currQ = questions[currIndex];
+    const options = document.querySelectorAll('.quiz__option');
+    const currQ = questions[currIndex];
 
-   //  insert title for the current question
-   updateEl('.quiz__subtitle', `Question ${currQ.id}/${questions.length}`);
-   updateEl('.quiz__title', currQ.title);
+    //  insert title for the current question
+    updateEl('.quiz__subtitle', `Question ${currQ.id}/${questions.length}`);
+    updateEl('.quiz__title', currQ.title);
 
-   //  create li elements for options or update their text
-   currQ.answers.map((answer: IAnswer, id: number) => {
-      if (options.length > 0) {
-         options[id].textContent = answer.title;
-         options[id].setAttribute('data-answer-id', answer.id.toString());
-      } else {
-         createEl(answer.id, answer.title);
-      }
-   });
+    //  create li elements for options or update their text
+    currQ.answers.map((answer: IAnswer, id: number) => {
+        if (options.length > 0) {
+            options[id].textContent = answer.title;
+            options[id].setAttribute('data-answer-id', answer.id.toString());
+        } else {
+            createEl(answer.id, answer.title);
+        }
+        return answer;
+    });
 
-   //  reset options' classes
-   options.forEach((option) => {
-      option.classList.remove('correct');
-      option.classList.remove('incorrect');
-   });
+    //  reset options' classes
+    options.forEach((option) => {
+        option.classList.remove('correct');
+        option.classList.remove('incorrect');
+    });
 
-   handleBtn('Next', next);
+    handleBtn('Next', next);
 };
 
 window.onload = startQuiz;

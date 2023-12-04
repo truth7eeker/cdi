@@ -12,3 +12,8 @@ cd task5/client
 npm i
 npm run dev
 ```
+### Test:
+```sh
+cd task5/client
+npm test
+```

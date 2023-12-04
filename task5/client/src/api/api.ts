@@ -1,30 +1,26 @@
-import { IQuestion } from './schema';
+import { type IQuestion } from './schema';
 
-export const getData = async (url: string) => {
-   try {
-      const response = await fetch(url as RequestInfo | URL);
-      return response.json();
-   }
-   catch (error) {
-      throw new Error(`${error}`)
-   }
-}
-
-
-export const checkAnswer = async (url: string, question: IQuestion, selectedId: number) => {
-   try {
-      const response = await fetch(url as RequestInfo | URL, {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({ questionID: question.id, userAnswerID: selectedId }),
-      });
-
-      return response.json();
-   } catch (error) {
-      throw new Error(`${error}`)
-   }
-
+export const getData = async (url: string): Promise<any> => {
+    try {
+        const response = await fetch(url as RequestInfo | URL);
+        return await response.json();
+    } catch (error) {
+        throw new Error(`${error}`);
+    }
 };
 
+export const checkAnswer = async (url: string, question: IQuestion, selectedId: number): Promise<any> => {
+    try {
+        const response = await fetch(url as RequestInfo | URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ questionID: question.id, userAnswerID: selectedId })
+        });
+
+        return await response.json();
+    } catch (error) {
+        throw new Error(`${error}`);
+    }
+};

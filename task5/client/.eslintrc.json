@@ -1,0 +1,117 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "standard-with-typescript",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "rules": {
+                "indent": "off",
+                "@typescript-eslint/indent": [
+                    "error",
+                    4
+                ],
+                "semi": "off",
+                "@typescript-eslint/semi": ["error", "always"] 
+            }
+        }
+    ],
+    "rules": {
+        "quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "always",
+                "named": "never",
+                "asyncArrow": "always"
+            }
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "never"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "comma-style": [
+            "error",
+            "last"
+        ],
+        "strict": [
+            "error",
+            "never"
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "arrow-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "prefer-const": "error",
+        "prefer-template": "error",
+        "eqeqeq": [
+            "error",
+            "always",
+            {
+                "null": "ignore"
+            }
+        ],
+        "no-var": "error",
+        "new-parens": "error",
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "no-useless-return": "off",
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/prefer-nullish-coalescing": "off"
+    },
+    "ignorePatterns": ["tests", "karma.config.js", "webpack.config.js"]
+}
