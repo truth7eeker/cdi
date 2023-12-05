@@ -6,10 +6,17 @@ const wrapper = document.querySelector('.quiz');
 
 const BASE_URL = process.env.QUIZ_URL;
 
-let questions: IQuestion[] = [];
-let currIndex: number = 0;
-let isChecked: boolean = false;
+export let questions: IQuestion[] = [];
+export let currIndex: number = 0;
+export let isChecked: boolean = false;
 let points: number = 0;
+
+export function setCheckedFlag(value: boolean) {
+    isChecked = value;
+}
+export function setQuestions(value: IQuestion[]) {
+    questions = value;
+}
 
 const quizTemplate = `<div class="quiz__content">
             <h3 class="quiz__subtitle"> </h3>
@@ -19,7 +26,7 @@ const quizTemplate = `<div class="quiz__content">
             <button type="button" class="quiz__btn"></buton>
           </div>`;
 
-const resetQuiz = () => {
+export const resetQuiz = () => {
     questions = [];
     isChecked = false;
     currIndex = 0;
@@ -38,7 +45,7 @@ const startQuiz = async () => {
     }
 };
 
-const next = () => {
+export const next = () => {
     if (currIndex === questions.length - 1) {
         return;
     }
