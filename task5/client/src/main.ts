@@ -1,22 +1,13 @@
-import { checkAnswer, getData } from './api/api';
+import api from './api/api';
 import { type IAnswer, type IQuestion } from './api/schema';
 import 'style.scss';
 
-const wrapper = document.querySelector('.quiz');
-
 const BASE_URL = process.env.QUIZ_URL;
 
-export let questions: IQuestion[] = [];
-export let currIndex: number = 0;
-export let isChecked: boolean = false;
+let questions: IQuestion[] = [];
+let currIndex: number = 0;
+let isChecked: boolean = false;
 let points: number = 0;
-
-export function setCheckedFlag(value: boolean) {
-    isChecked = value;
-}
-export function setQuestions(value: IQuestion[]) {
-    questions = value;
-}
 
 const quizTemplate = `<div class="quiz__content">
             <h3 class="quiz__subtitle"> </h3>
@@ -26,18 +17,23 @@ const quizTemplate = `<div class="quiz__content">
             <button type="button" class="quiz__btn"></buton>
           </div>`;
 
-export const resetQuiz = () => {
+const resetQuiz = () => {
     questions = [];
-    isChecked = false;
+    handleCheckedFlag(false);
     currIndex = 0;
     points = 0;
 };
 
+const handleCheckedFlag = (val: boolean) => {
+    isChecked = val;
+};
+
 // fetch data and render basic quiz structure
 const startQuiz = async () => {
+    const wrapper = document.querySelector('.quiz');
     resetQuiz();
 
-    questions = await getData(`${BASE_URL}/questions`);
+    questions = await api.getData(`${BASE_URL}/questions`);
 
     if (questions && questions.length > 0) {
         wrapper.innerHTML = quizTemplate;
@@ -45,7 +41,7 @@ const startQuiz = async () => {
     }
 };
 
-export const next = () => {
+const next = () => {
     if (currIndex === questions.length - 1) {
         return;
     }
@@ -57,7 +53,7 @@ export const next = () => {
         currIndex = currIndex + 1;
         createQuestion();
         //  answer can be selected
-        isChecked = false;
+        handleCheckedFlag(false);
     }
 };
 
@@ -125,7 +121,8 @@ const provideFeedback = () => {
     return feedback;
 };
 
-const showResults = async () => {
+const showResults = () => {
+    const wrapper = document.querySelector('.quiz');
     wrapper.innerHTML = `<div class="quiz__content quiz__results">
    <h3>${provideFeedback()}</h3>
    <button type="button" class="quiz__btn"></button>
@@ -135,7 +132,7 @@ const showResults = async () => {
 };
 
 const select = async (selectedID: number) => {
-    const { correctID, result } = await checkAnswer(
+    const { correctID, result } = await api.checkAnswer(
         `${BASE_URL}/answer`,
         questions[currIndex],
         selectedID
@@ -155,7 +152,7 @@ const select = async (selectedID: number) => {
     }
 
     //  revealed the correct answer, no more attempts
-    isChecked = true;
+    handleCheckedFlag(true);
     points = result;
 };
 
@@ -188,3 +185,23 @@ const createQuestion = () => {
 };
 
 window.onload = startQuiz;
+
+// needed for tests
+
+const quiz = {
+    BASE_URL,
+    startQuiz,
+    next,
+    resetQuiz,
+    quizTemplate,
+    handleCheckedFlag,
+    showResults,
+    handleBtn,
+    provideFeedback,
+    get questions () { return questions; },
+    get currIndex () { return currIndex; },
+    get points () { return points; },
+    set points (val: number) { points = val; }
+};
+
+export default quiz;

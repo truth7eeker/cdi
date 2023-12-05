@@ -1,6 +1,6 @@
 import { type IQuestion } from './schema';
 
-export const getData = async (url: string): Promise<any> => {
+const getData = async (url: string): Promise<any> => {
     try {
         const response = await fetch(url as RequestInfo | URL);
         return await response.json();
@@ -9,7 +9,7 @@ export const getData = async (url: string): Promise<any> => {
     }
 };
 
-export const checkAnswer = async (url: string, question: IQuestion, selectedId: number): Promise<any> => {
+const checkAnswer = async (url: string, question: IQuestion, selectedId: number): Promise<any> => {
     try {
         const response = await fetch(url as RequestInfo | URL, {
             method: 'POST',
@@ -24,3 +24,10 @@ export const checkAnswer = async (url: string, question: IQuestion, selectedId: 
         throw new Error(`${error}`);
     }
 };
+
+const api = {
+    getData,
+    checkAnswer
+};
+
+export default api;
